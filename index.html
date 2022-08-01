@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101224545-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-101224545-6');
+    </script>
+
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <title>Konnected Flash Tool - Install Konnected via Web Browser</title>
+    <style>
+      div,fieldset,input,select{padding:5px;font-size:1em;}
+      fieldset{background:#4f4f4f;}
+      p{margin:0.5em 0;}
+      p,li{font-size:1.2em;line-height: 1.5em;}
+      input{width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;background:#dddddd;color:#000000;}
+      input[type=checkbox],input[type=radio]{width:1em;margin-right:6px;vertical-align:-1px;}
+      input[type=range]{width:99%;}
+      select{width:100%;background:#dddddd;color:#000000;}
+      textarea{resize:vertical;width:98%;height:318px;padding:5px;overflow:auto;background:#1f1f1f;color:#65c115;}
+      body{text-align:center;font-family:"Source Sans Pro",HelveticaNeue,"Helvetica Neue",sans-serif;background:#FFF;--esp-tools-button-color:#2777c0;}
+      td{padding:0px;}
+      button{border:0;border-radius:0.3rem;background:#2777c0;color:#faffff;line-height:2.4rem;font-size:1.2rem;width:100%;-webkit-transition-duration:0.4s;transition-duration:0.4s;cursor:pointer;}
+      button:hover{background:#2777c0;}
+      h1{font-weight:100;}
+      h2{font-weight:300;}
+      li{margin-bottom: 1em;}
+      .sub{font-weight:200;font-size:1em;}
+      .bred{background:#d43535;}
+      .bred:hover{background:#931f1f;}
+      .bgrn{background:#47c266;}
+      .bgrn:hover{background:#5aaf6f;}
+      a{color:#2777c0;text-decoration:none;}
+      .p{float:left;text-align:left;}
+      .q{float:right;text-align:right;}
+      .r{border-radius:0.3em;padding:2px;margin:6px 2px;}
+      .pick-variant{margin-bottom:16px;}
+      .flasher{text-align:left;}
+      esp-web-install-button[install-unsupported]{ border:1px dashed; padding: 1em; background-color: lightgoldenrodyellow;}
+
+    </style>
+    <script
+      type="module"
+      src="https://unpkg.com/esp-web-tools@8.0.6/dist/web/install-button.js?module"
+    ></script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '235610976930801');
+      fbq('track', 'PageView');
+      </script>
+      <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=235610976930801&ev=PageView&noscript=1"
+      /></noscript>
+      <!-- End Facebook Pixel Code -->
+  </head>
+  <body>
+    <div class="main" style='display:inline-block;min-width:340px;max-width:860px;margin-top:2em;'>
+      <img style="max-width:540px;" src="https://cdn.shopify.com/s/files/1/2085/3145/files/konnected-blue.svg" itemprop="logo" alt="Konnected"><br/>
+      <h1>Web-based Flash Tool & Debug Console</h1>
+      <div class="flasher">
+        <p>Use this tool to easily update the <a href="https://konnected.io/products/konnected-alarm-panel-wired-alarm-system-conversion-kit" target="_blank">Konnected Alarm Panel</a> and <a href="https://konnected.io/products/konnected-alarm-panel-pro-12-zone-kit">Konnected Alarm Panel Pro</a> firmware to the latest version.
+          This tool can also be used to capture console output from the Konnected device for troubleshooting.
+        </p>
+        <ol>
+          <li><a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank">Download and install the USB drivers from Silicon Labs</a> to connect Konnected branded hardware.<br/>
+            <span class="sub">To connect a NodeMCU/Konnected v1 use <a href="https://sparks.gogo.co.nz/ch340.html" target="_blank">this driver</a>. You only need to do this once.</span></li>
+          <li>On 6-zone boards: open the door/window on Zone 6 or disconnect the wire from Zone 6 before continuing.
+            <span class="sub">Zone 6 must remain open or empty while flashing. You can leave all the other wires connected.</span>
+          </li>
+          <li>Plug in the device to your computer or laptop using a Micro-USB cable that supports data transfer.
+            <span class="sub"><a href="https://konnected.io/products/micro-usb-cable" target="_blank">Need a cable?</a></span></li>
+          <li>Click <u>CONNECT</u> below and select the correct port for the device in the popup window.<br/><span class="sub">Usually has <em>CP210x</em> or <em>SLAB_USBtoUART</em> in the name.</span></li>
+          <li>Follow the prompts to <u>Install Konnected</u> or view <u>Logs & Console</u>.</li>
+          <li><a href="https://help.konnected.io/support/solutions/articles/32000023498-re-sync-device-settings" target="_blank">Re-sync the device settings</a> from the Konnected App or your local home automation platform.</li>
+        </ol>
+      </div>
+      <p>
+        <esp-web-install-button manifest="manifest.json" id="inst">
+          <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
+        </esp-web-install-button>
+      </p>
+      <br/>
+      <p>Need help? <a href="https://help.konnected.io">Konnected Help & Support portal</a></p>
+      <div style='font-size:11px;margin-top:5em;'>
+        &copy; Copyright 2022 <a href="https://konnected.io">Konnected Inc.</a></br>
+        <a href="https://esphome.github.io/esp-web-tools/" target='_blank' style='color:#aaa;'>powered by ESP Web Tools</a>
+      </div>  
+    </div>
+  </body>
+</html>
+
