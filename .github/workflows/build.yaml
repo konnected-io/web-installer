@@ -21,7 +21,7 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: us-east-1
-          flags: --recursive --acl public-read --exclude ".git*"
+          flags: --recursive --acl public-read --exclude ".gitignore" --exclude ".git/*" --exclude ".github/*"
 
       - uses: chetan/invalidate-cloudfront-action@v2
         env:
