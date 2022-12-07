@@ -72,26 +72,12 @@
   <body>
     <div class="main" style='display:inline-block;min-width:340px;max-width:860px;margin-top:2em;'>
       <img width="512px" src="assets/logo-blue.png" itemprop="logo" alt="Konnected"><br/>
-      <h1>Web-based Flash Tool & Debug Console</h1>
-      <div class="flasher">
-        <p>Use this tool to easily update the <a href="https://konnected.io/products/konnected-alarm-panel-wired-alarm-system-conversion-kit" target="_blank">Konnected Alarm Panel</a> and <a href="https://konnected.io/products/konnected-alarm-panel-pro-12-zone-kit">Konnected Alarm Panel Pro</a> firmware to the latest version.
-          This tool can also be used to capture console output from the Konnected device for troubleshooting.
-        </p>
-        <ol>
-          <li><a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank">Download and install the USB drivers from Silicon Labs</a> to connect Konnected branded hardware.<br/>
-            <span class="sub">To connect a NodeMCU/Konnected v1 use <a href="https://sparks.gogo.co.nz/ch340.html" target="_blank">this driver</a>. You only need to do this once.</span></li>
-          <li>On 6-zone boards: open the door/window on Zone 6 or disconnect the wire from Zone 6 before continuing.
-            <span class="sub">Zone 6 must remain open or empty while flashing. You can leave all the other wires connected.</span>
-          </li>
-          <li>Plug in the device to your computer or laptop using a Micro-USB cable that supports data transfer.
-            <span class="sub"><a href="https://konnected.io/products/micro-usb-cable" target="_blank">Need a cable?</a></span></li>
-          <li>Click <u>CONNECT</u> below and select the correct port for the device in the popup window.<br/><span class="sub">Usually has <em>CP210x</em> or <em>SLAB_USBtoUART</em> in the name.</span></li>
-          <li>Follow the prompts to <u>Install Konnected</u> or view <u>Logs & Console</u>.</li>
-          <li><a href="https://help.konnected.io/support/solutions/articles/32000023498-re-sync-device-settings" target="_blank">Re-sync the device settings</a> from the Konnected App or your local home automation platform.</li>
-        </ol>
-      </div>
+      <span style="font-size:300%">+</span><br/>
+      <img width="512px" src="assets/Matter_logo.jpeg" itemprop="logo" alt="Matter">
+      <h1>Matter Preview for the Konnected Alarm Panel Pro</h1>
+      <p>This is pre-release software! NOT FOR PRODUCTION USE!</p>
       <p>
-        <esp-web-install-button manifest="manifest.json" id="inst">
+        <esp-web-install-button manifest="matter.json" id="inst">
           <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
         </esp-web-install-button>
       </p>
