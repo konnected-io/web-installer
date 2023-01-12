@@ -1,0 +1,12 @@
+{
+  "name": "Konnected Alarm Panel for ESPHome",
+  "version": "0.1.0",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "https://konnected-io.s3.us-east-2.amazonaws.com/builds/esphome/esphome-alarm-panel-pro-esp32-rtl8201-0.1.0.bin"}
+      ]
+    }
+  ]
+}
