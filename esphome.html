@@ -13,7 +13,7 @@
 
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
-    <title>Konnected Flash Tool - Install Konnected via Web Browser</title>
+    <title>Konnected Flash Tool - ESPHome - Install Konnected via Web Browser</title>
     <link rel="stylesheet" href="https://use.typekit.net/zoq0xkd.css">
     <style>
       div,fieldset,input,select{padding:5px;font-size:1em;}
@@ -46,6 +46,7 @@
       esp-web-install-button[install-unsupported]{ border:1px dashed; padding: 1em; background-color: lightgoldenrodyellow;}
 
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script
       type="module"
       src="https://unpkg.com/esp-web-tools@9.0.5/dist/web/install-button.js?module"
@@ -72,31 +73,35 @@
   <body>
     <div class="main" style='display:inline-block;min-width:340px;max-width:860px;margin-top:2em;'>
       <img width="512px" src="assets/logo-blue.png" itemprop="logo" alt="Konnected"><br/>
-      <h1>Web-based Flash Tool & Debug Console</h1>
-      <div class="flasher">
-        <p>Use this tool to easily update the <a href="https://konnected.io/products/konnected-alarm-panel-wired-alarm-system-conversion-kit" target="_blank">Konnected Alarm Panel</a> and <a href="https://konnected.io/products/konnected-alarm-panel-pro-12-zone-kit">Konnected Alarm Panel Pro</a> firmware to the latest version.
-          This tool can also be used to capture console output from the Konnected device for troubleshooting.
-        </p>
-        <ol>
-          <li><a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank">Download and install the USB drivers from Silicon Labs</a> to connect Konnected branded hardware.<br/>
-            <span class="sub">To connect a NodeMCU/Konnected v1 use <a href="https://sparks.gogo.co.nz/ch340.html" target="_blank">this driver</a>. You only need to do this once.</span></li>
-          <li>On 6-zone boards: open the door/window on Zone 6 or disconnect the wire from Zone 6 before continuing.
-            <span class="sub">Zone 6 must remain open or empty while flashing. You can leave all the other wires connected.</span>
-          </li>
-          <li>Plug in the device to your computer or laptop using a Micro-USB cable that supports data transfer.
-            <span class="sub"><a href="https://konnected.io/products/micro-usb-cable" target="_blank">Need a cable?</a></span></li>
-          <li>Click <u>CONNECT</u> below and select the correct port for the device in the popup window.<br/><span class="sub">Usually has <em>CP210x</em> or <em>SLAB_USBtoUART</em> in the name.</span></li>
-          <li>Follow the prompts to <u>Install Konnected</u> or view <u>Logs & Console</u>.</li>
-          <li><a href="https://help.konnected.io/support/solutions/articles/32000023498-re-sync-device-settings" target="_blank">Re-sync the device settings</a> from the Konnected App or your local home automation platform.</li>
-        </ol>
+      <span style="font-size:300%">+</span><br/>
+      <img style="margin: 2em 0;" width="396px" src="https://esphome.io/_static/logo-text.svg" itemprop="logo" alt="ESPHome">
+      <h1>Konnected is Made for ESPHome</h1>
+      <p>Connect locally to Home Assistant and/or customize your Konnected Alarm Panel firmware with Konnected's ESPHome base firmware and open-source firmware recipes.
+        Learn more <a href="https://github.com/konnected-io/konnected-esphome">on GitHub at konnected-io/konnected-esphome</a>.</p>
+      <p>Choose a firmware build and click <b>Connect</b> below to install ESPHome on your Konnected Alarm Panel:</p>
+        <br/>
+      <div style="display:grid;">
+        <div style="grid-column: 1 / span 2;">
+          <select id="build-variant">
+            <option selected value="esphome-alarm-panel-wifi">Alarm Panel / Alarm Panel Pro (WiFi)</option>
+            <option value="esphome-alarm-panel-lan8720">Alarm Panel Pro up to 1.7 (Ethernet)</option>
+            <option value="esphome-alarm-panel-rtl8201">Alarm Panel Pro 1.8 and up (Ethernet)</option>
+          </select>
+        </div>
+        <div style="grid-column-start: 3;">
+          <esp-web-install-button manifest="esphome-alarm-panel-wifi.json" id="inst">
+            <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
+          </esp-web-install-button>
+        </div>
+        <script>
+          $("select#build-variant").on('change', e => {
+            console.log(this)
+            var $selectedOption = $("option:selected", this.currentTarget);
+            $("#inst").attr('manifest', $selectedOption.val() + '.json');
+          })
+        </script>
       </div>
-      <p>
-        <esp-web-install-button manifest="manifest.json" id="inst">
-          <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
-        </esp-web-install-button>
-      </p>
       <br/>
-      <p>Need help? <a href="https://help.konnected.io">Konnected Help & Support portal</a></p>
       <div style='font-size:11px;margin-top:5em;'>
         &copy; Copyright 2023 <a href="https://konnected.io">Konnected Inc.</a></br>
         <a href="https://esphome.github.io/esp-web-tools/" target='_blank' style='color:#aaa;'>powered by ESP Web Tools</a>
