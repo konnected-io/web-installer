@@ -91,7 +91,7 @@
           </select>
         </div>
         <div style="grid-column-start: 3;">
-          <esp-web-install-button manifest="esphome-alarm-panel-wifi.json" id="inst">
+          <esp-web-install-button manifest="manifests/esphome-alarm-panel-wifi.json" id="inst">
             <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
           </esp-web-install-button>
         </div>
@@ -99,7 +99,7 @@
           $("select#build-variant").on('change', e => {
             console.log(this)
             var $selectedOption = $("option:selected", this.currentTarget);
-            $("#inst").attr('manifest', $selectedOption.val() + '.json');
+            $("#inst").attr('manifest', 'manifests/' + $selectedOption.val() + '.json');
           })
         </script>
       </div>
