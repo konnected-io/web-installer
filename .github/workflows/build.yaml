@@ -10,9 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Build
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: keithweaver/aws-s3-github-action@v1.0.0
+      - uses: actions/checkout@v3
+      - uses: konnected-io/aws-s3-github-action@master
         name: Copy AWS S3
         with:
           command: cp
@@ -21,7 +20,7 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: us-east-1
-          flags: --recursive --acl public-read --exclude ".gitignore" --exclude ".git/*" --exclude ".github/*"
+          flags: --acl public-read --exclude ".gitignore" --exclude ".git/*" --exclude ".github/*" --recursive
 
       - uses: chetan/invalidate-cloudfront-action@v2
         env:
