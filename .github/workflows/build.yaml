@@ -19,7 +19,7 @@ jobs:
           rm .gitignore
 
       - uses: konnected-io/aws-s3-github-action@master
-        name: Copy AWS S3
+        name: Copy to S3
         with:
           command: cp
           source: ./
