@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-789423255"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-789423255');
+    </script>
+
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <title>Konnected Flash Tool - Garage Door Opener Firmware</title>
+    <link rel="stylesheet" href="https://use.typekit.net/zoq0xkd.css">
+    <style>
+      div,fieldset,input,select{padding:5px;font-size:1em;}
+      fieldset{background:#4f4f4f;}
+      p{margin:0.5em 0;}
+      p,li{font-size:1.2em;line-height: 1.5em;}
+      input{width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;background:#dddddd;color:#000000;}
+      input[type=checkbox],input[type=radio]{width:1em;margin-right:6px;vertical-align:-1px;}
+      input[type=range]{width:99%;}
+      select{width:100%;background:#dddddd;color:#000000;}
+      textarea{resize:vertical;width:98%;height:318px;padding:5px;overflow:auto;background:#1f1f1f;color:#65c115;}
+      body{text-align:center;font-family:"inter",sans-serif;background:#FFF;--esp-tools-button-color:#3F75FF;}
+      td{padding:0px;}
+      button{border:0;border-radius:0.3rem;background:#2777c0;color:#faffff;line-height:2.4rem;font-size:1.2rem;width:100%;-webkit-transition-duration:0.4s;transition-duration:0.4s;cursor:pointer;}
+      button:hover{background:#3F75FF;}
+      h1{font-weight:100;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;}
+      h2{font-weight:300;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;}
+      li{margin-bottom: 1em;}
+      .sub{font-weight:200;font-size:1em;}
+      .bred{background:#d43535;}
+      .bred:hover{background:#931f1f;}
+      .bgrn{background:#47c266;}
+      .bgrn:hover{background:#5aaf6f;}
+      a{color:#3F75FF;text-decoration:none;}
+      .p{float:left;text-align:left;}
+      .q{float:right;text-align:right;}
+      .r{border-radius:0.3em;padding:2px;margin:6px 2px;}
+      .pick-variant{margin-bottom:16px;}
+      .flasher{text-align:left;}
+      esp-web-install-button[install-unsupported]{ border:1px dashed; padding: 1em; background-color: lightgoldenrodyellow;}
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"
+    ></script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '235610976930801');
+      fbq('track', 'PageView');
+      </script>
+      <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=235610976930801&ev=PageView&noscript=1"
+      /></noscript>
+      <!-- End Facebook Pixel Code -->
+  </head>
+  <body>
+    <div class="main" style='display:inline-block;min-width:340px;max-width:860px;margin-top:2em;'>
+      <img width="512px" src="assets/logo-blue.png" itemprop="logo" alt="Konnected"><br/>
+      <h1>Konnected Garge Door Opener Firmware</h1>
+      <div style="text-align: left;">
+        <p>Open, close and monitor your garage door from anywhere without the monthly fees! Konnected's new Garage Door Opener retrofits most older garage door openers and makes them smart.</p>      
+      </div>
+      
+      <div style="display:grid; text-align: left;">
+        <div style="grid-column: 1 / span 3;">
+          <label for="build-variant">To update your device's firmware, first choose your platform:</label>
+        </div>
+        <div style="grid-column: 1 / span 2;">
+          <select id="build-variant">
+            <option selected value="konnected-garage-door-opener">SmartThings & Alexa via Konnected Cloud</option>
+            <option value="esphome-garage-door-wifi">Home Assistant via ESPHome</option>
+          </select>
+        </div>
+        <div style="grid-column-start: 3;">
+          <esp-web-install-button manifest="manifests/konnected-garage-door-opener.json" id="inst">
+            <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
+          </esp-web-install-button>
+        </div>
+        <script>
+          $("select#build-variant").on('change', e => {
+            var $selectedOption = $("option:selected", this.currentTarget);
+            $("#inst").attr('manifest', 'manifests/' + $selectedOption.val() + '.json');
+          })
+        </script>
+      </div>
+      <br/>
+      <div style='font-size:11px;margin-top:5em;'>
+        &copy; Copyright 2023 <a href="https://konnected.io">Konnected Inc.</a></br>
+        <a href="https://esphome.github.io/esp-web-tools/" target='_blank' style='color:#aaa;'>powered by ESP Web Tools</a>
+      </div>  
+    </div>
+  </body>
+</html>
+
