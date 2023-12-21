@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <title>Konnected Flash Tool - CT</title>
+    <link rel="stylesheet" href="https://use.typekit.net/zoq0xkd.css">
+    <style>
+      div,fieldset,input,select{padding:5px;font-size:1em;}
+      fieldset{background:#4f4f4f;}
+      p{margin:0.5em 0;}
+      p,li{font-size:1.2em;line-height: 1.5em;}
+      input{width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;background:#dddddd;color:#000000;}
+      input[type=checkbox],input[type=radio]{width:1em;margin-right:6px;vertical-align:-1px;}
+      input[type=range]{width:99%;}
+      select{width:100%;background:#dddddd;color:#000000;}
+      textarea{resize:vertical;width:98%;height:318px;padding:5px;overflow:auto;background:#1f1f1f;color:#65c115;}
+      body{text-align:center;font-family:"inter",HelveticaNeue,"Helvetica Neue",sans-serif;background:#FFF;--esp-tools-button-color:#3F75FF;}
+      td{padding:0px;}
+      button{border:0;border-radius:0.3rem;background:#2777c0;color:#faffff;line-height:2.4rem;font-size:1.2rem;width:100%;-webkit-transition-duration:0.4s;transition-duration:0.4s;cursor:pointer;}
+      button:hover{background:#3F75FF;}
+      h1{font-weight:100;}
+      h2{font-weight:300;}
+      li{margin-bottom: 1em;}
+      .sub{font-weight:200;font-size:1em;}
+      .bred{background:#d43535;}
+      .bred:hover{background:#931f1f;}
+      .bgrn{background:#47c266;}
+      .bgrn:hover{background:#5aaf6f;}
+      a{color:#3F75FF;text-decoration:none;}
+      .p{float:left;text-align:left;}
+      .q{float:right;text-align:right;}
+      .r{border-radius:0.3em;padding:2px;margin:6px 2px;}
+      .pick-variant{margin-bottom:16px;}
+      .flasher{text-align:left;}
+      esp-web-install-button[install-unsupported]{ border:1px dashed; padding: 1em; background-color: lightgoldenrodyellow;}
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"
+    ></script>
+  </head>
+  <body>
+    <div class="main" style='display:inline-block;min-width:340px;max-width:860px;margin-top:2em;'>
+      <img width="512px" src="assets/logo-blue.png" itemprop="logo" alt="Konnected"><br/>    
+      <h1>CT firmware update</h1>
+      <div style="text-align: left;">
+        <p>NOT FOR PRODUCTION USE. This firmware update page is for distributing firmware updates to Konnected's compliance lab partners. If you've stumbled
+          across this page by accident, kindly move along, thanks!
+        </p>
+        </div>
+      <br/>
+      <div style="display:grid;">
+        <div style="grid-column: 1 / span 2;">
+          <select id="build-variant">
+            <option selected value="CT-gdov2-s">GDOv2-S</option>
+          </select>
+        </div>
+        <div style="grid-column-start: 3;">
+          <esp-web-install-button manifest="manifests/CT-gdov2-s.json" id="inst">
+            <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
+          </esp-web-install-button>
+        </div>
+        <script>
+          $("select#build-variant").on('change', e => {
+            console.log(this)
+            var $selectedOption = $("option:selected", this.currentTarget);
+            $("#inst").attr('manifest', 'manifests/' + $selectedOption.val() + '.json');
+          })
+        </script>
+      </div>
+      <br/>
+      <div style='font-size:11px;margin-top:5em;'>
+        &copy; Copyright 2023 <a href="https://konnected.io">Konnected Inc.</a></br>
+        <a href="https://esphome.github.io/esp-web-tools/" target='_blank' style='color:#aaa;'>powered by ESP Web Tools</a>
+      </div>  
+    </div>
+  </body>
+</html>
+

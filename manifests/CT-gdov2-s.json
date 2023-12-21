@@ -1,0 +1,12 @@
+{
+  "name": "Konnected GDOv2-S",
+  "version": "0.4.3-CT-20231221",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "https://konnected-io.s3.us-east-2.amazonaws.com/builds/CT-gdov2-s-20231221.bin", "offset": 0}
+      ]
+    }
+  ]
+}
