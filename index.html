@@ -289,7 +289,8 @@
           platform = null;
           $inst_button.hide();
           $('#build-header').hide();
-          $('div.firmware.radios').hide();          
+          $('div.firmware.radios').hide();
+          $('div.build.radios').hide();
           $('input[type="radio"][name="firmware"]').prop('checked', false);
           $('input[type="radio"][name="build"]').prop('checked', false);
           // show and scroll to Firmware section
@@ -303,10 +304,10 @@
           if($target.data('manifest')) {
             $('#inst').attr('manifest', $target.data('manifest'));
             $('#build-header').hide();
-            $inst_button.show()
+            $inst_button.show();
           } else {
             $('input[type="radio"][name="build"]').prop('checked', false);
-            $inst_button.hide()
+            $inst_button.hide();
             $('div.build.radios#' + hardware + '-' + platform).show();
             $('html,body').animate({scrollTop:$('#build-header').show().offset().top},'slow');            
           }
