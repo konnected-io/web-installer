@@ -76,11 +76,26 @@
       <h1>Matter Preview for the Konnected Alarm Panel Pro</h1>
       <p>This is pre-release software! NOT FOR PRODUCTION USE!</p>
       <br/>
-      <p>
-        <esp-web-install-button manifest="matter.json" id="inst">
-          <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
-        </esp-web-install-button>
-      </p>
+      <div style="display:grid;">
+        <div style="grid-column: 1 / span 2;">
+          <select id="build-variant">
+            <option selected value="matter-alarm-panel-pro-wifi">Matter Alarm Panel Pro (WiFi)</option>
+            <option value="matter-alarm-panel-pro-ethernet">Matter Alarm Panel Pro (Ethernet)</option>
+          </select>
+        </div>
+        <div style="grid-column-start: 3;">
+          <esp-web-install-button manifest="manifests/matter-alarm-panel-pro-wifi.json" id="inst">
+            <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
+          </esp-web-install-button>
+        </div>
+        <script>
+          $("select#build-variant").on('change', e => {
+            console.log(this)
+            var $selectedOption = $("option:selected", this.currentTarget);
+            $("#inst").attr('manifest', 'manifests/' + $selectedOption.val() + '.json');
+          })
+        </script>
+      </div>
       <br/>
       <div style='font-size:11px;margin-top:5em;'>
         &copy; Copyright 2023 <a href="https://konnected.io">Konnected Inc.</a></br>

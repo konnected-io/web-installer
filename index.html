@@ -18,20 +18,24 @@
       div,fieldset,input,select{padding:5px;font-size:1em;}
       fieldset{background:#4f4f4f;}
       p{margin:0.5em 0;}
-      p,li{font-size:1.2em;line-height: 1.5em;}
+      p,li{font-size:1.1em;line-height: 1.2em;}
       input{width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;background:#dddddd;color:#000000;}
       input[type=checkbox],input[type=radio]{width:1em;margin-right:6px;vertical-align:-1px;}
       input[type=range]{width:99%;}
       select{width:100%;background:#dddddd;color:#000000;}
       textarea{resize:vertical;width:98%;height:318px;padding:5px;overflow:auto;background:#1f1f1f;color:#65c115;}
-      body{text-align:center;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;background:#FFF;--esp-tools-button-color:#3F75FF;}
+      body{font-family:Inter,sans-serif;background:#FFF;--esp-tools-button-color:#3F75FF;}
       td{padding:0px;}
       button{border:0;border-radius:0.3rem;background:#2777c0;color:#faffff;line-height:2.4rem;font-size:1.2rem;width:100%;-webkit-transition-duration:0.4s;transition-duration:0.4s;cursor:pointer;}
       button:hover{background:#3F75FF;}
-      h1{font-weight:100;}
-      h2{font-weight:300;}
+      h1{font-weight:100;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;}
+      h2{font-weight:300;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;}
+      h3{font-weight:normal;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;}
       li{margin-bottom: 1em;}
-      .sub{font-weight:200;font-size:1em;}
+      .main{margin: 2em auto;min-width:340px;max-width:860px;width:860px;}
+      .logo{text-align: center;}
+      .sub{font-weight:lighter;font-size:1em;}
+      .sub b{font-weight:normal;}
       .bred{background:#d43535;}
       .bred:hover{background:#931f1f;}
       .bgrn{background:#47c266;}
@@ -42,9 +46,28 @@
       .r{border-radius:0.3em;padding:2px;margin:6px 2px;}
       .pick-variant{margin-bottom:16px;}
       .flasher{text-align:left;}
+      .box{padding: 1em 2em; background-color: #f8f8f8; border: 1px solid #999;}
+      .badge{margin-left:0.5rem;font-size:0.8rem;letter-spacing:0.1rem;padding:0.3rem 1rem;background:rgba(71, 245, 163);vertical-align:top;}
+      .badge.beta{background: #fdf0d7;}
+      div.hardware.radios,
+      div.firmware.radios{display:flex;align-items:start;flex-direction:row;flex-wrap:wrap;}
+      div.build.radios{border-radius:10px;display:block;border:4px solid #f8f8f8;padding:1em;}
+      div.radios label{cursor:pointer;display:block;position:relative;}
+      div.hardware.radios label{width:32%;}
+      div.firmware.radios label{padding:4px;width:45%;margin:0.5em;border-radius:10px;border:4px solid #f8f8f8;}
+      div.hardware.radios input{position:absolute;top:16px;left:16px;}
+      div.radios img{width:240px;margin:0 auto;}
+      div.hardware.radios img{border-radius:10px;display:block;border:4px solid #f8f8f8;}      
+      input:checked ~ img, 
+      div.hardware.radios img:has(+ input:checked){border-color:#3F75FF;}
+      div.firmware.radios label:has(input:checked){border-color:#3F75FF;}
+      div.firmware.radios img{width:220px;padding:1em;margin: 0 auto;border:none;}
+      div.radios .img-container{min-height: 6rem;}
+      div.install-button{margin:2em auto;text-align: center;}
+      esp-web-install-button{zoom:1.5;}
       esp-web-install-button[install-unsupported]{ border:1px dashed; padding: 1em; background-color: lightgoldenrodyellow;}
-
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script
       type="module"
       src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"
@@ -69,14 +92,178 @@
       <!-- End Facebook Pixel Code -->
   </head>
   <body>
-    <div class="main" style='display:inline-block;min-width:340px;max-width:860px;margin-top:2em;'>
-      <img width="512px" src="assets/logo-blue.png" itemprop="logo" alt="Konnected"><br/>
-      <h1>Web-based Flash Tool & Debug Console</h1>
-      <div class="flasher">
-        <p>Use this tool to easily update the <a href="https://konnected.io/products/konnected-alarm-panel-wired-alarm-system-conversion-kit" target="_blank">Konnected Alarm Panel</a> and <a href="https://konnected.io/products/konnected-alarm-panel-pro-12-zone-kit">Konnected Alarm Panel Pro</a> firmware to the latest version.
-          This tool can also be used to capture console output from the Konnected device for troubleshooting.
-        </p>
-        <ol>
+    <div class="main">
+      <img width="384px" src="assets/logo-blue.svg" itemprop="logo" alt="Konnected" class="logo"><br/>
+      <h1>Flash & Debugging Tool</h1>
+      <div>
+        <p>Use this web page to install Konnected device firmware and/or connect to the device console for USB debugging.</p>
+        <h2>Select your Konnected hardware:</h2>
+        <div class="hardware radios">
+          <label>
+            <img src="https://konnected.io/cdn/shop/products/polotno-2_2.png?v=1691699458&width=240" alt="6-Zone Alarm Panel">
+            <input type="radio" name="hardware" value="alarm-panel-esp8266">
+            <p>6-zone Alarm Panels</p>           
+          </label>
+
+          <label>
+            <img src="https://konnected.io/cdn/shop/products/12_zones_-_1_kit_791fbf60-751a-4428-aa8c-dcb4b7474989.png?v=1691699521&width=240" alt="Alarm Panel Pro">
+            <input type="radio" name="hardware" value="alarm-panel-pro">
+            <p>Alarm Panel Pro</p>           
+          </label>
+
+          <label>
+            <img src="https://konnected.io/cdn/shop/files/GDOProductImages_2_1.png?v=1706810917&width=240" alt="GDO White">
+            <input type="radio" name="hardware" value="gdo-white">
+            <p>GDO White (v1 or v2)</p>           
+          </label>
+        </div>
+        
+        <h2 id="firmware-header" style="display:none;">Select a firmware platform:</h2>
+
+        <!-- Alarm Panel ESP8266 -->
+        <div class="firmware radios" id="alarm-panel-esp8266" style="display:none;">          
+          <label>
+            <div class="img-container">
+              <img src="assets/logo-blue.svg">
+            </div>            
+            <p>
+              <input type="radio" name="firmware" value="konnected-legacy" data-manifest="manifest.json">
+              Original Konnected firmware
+            </p>
+            <ul class="sub">
+              <li><b>SmartThings</b> and <b>Alexa</b> integration via Konnected cloud.</li>
+              <li><b>Hubitat</b>, <b>HomeBridge</b>, <b>Control4</b> integration via <a href="https://konnected.readme.io/v1.0/reference" target="_blank">local device API v1</a>.</li>
+              <li>Home Assistant integration (<a href="https://www.home-assistant.io/integrations/konnected" target="_blank">deprecated</a>)</li>
+            </ul>
+          </label>
+
+          <label>
+            <div class="img-container">            
+              <img src="assets/made-for-esphome-black-on-white.svg">
+            </div>
+            <p>
+              <input type="radio" name="firmware" value="esphome" data-manifest="manifests/esphome-alarm-panel-wifi.json">
+              ESPHome firmware<span class="badge new">NEW</span>
+            </p>
+            <ul class="sub">
+              <li><b>Home Assistant</b> integration via native local API (recommended)</li>
+              <li><b>Homeseer integration</b> via <a href="https://konnected.readme.io/v2.0/reference" target="_blank">local device API v2</a>.</li>
+            </ul>
+          </label>
+        </div>
+
+        <!-- Alarm Panel Pro -->
+        <div class="firmware radios" id="alarm-panel-pro" style="display:none;">          
+          <label>
+            <div class="img-container">
+              <img src="assets/logo-blue.svg">
+            </div>            
+            <p>
+              <input type="radio" name="firmware" value="konnected-legacy" data-manifest="manifest.json">
+              Original Konnected Pro firmware
+            </p>
+            <ul class="sub">
+              <li><b>SmartThings</b> and <b>Alexa</b> integration via Konnected cloud.</li>
+              <li><b>Hubitat</b>, <b>HomeBridge</b>, <b>Control4</b> integration via <a href="https://konnected.readme.io/v1.0/reference" target="_blank">local device API v1</a>.</li>
+              <li>Home Assistant integration (<a href="https://www.home-assistant.io/integrations/konnected" target="_blank">deprecated</a>)</li>
+            </ul>
+          </label>
+
+          <label>
+            <div class="img-container">            
+              <img src="assets/made-for-esphome-black-on-white.svg">
+            </div>
+            <p>
+              <input type="radio" name="firmware" value="esphome">
+              ESPHome firmware<span class="badge new">NEW</span>
+            </p>
+            <ul class="sub">
+              <li><b>Home Assistant</b> integration via native local API (recommended)</li>
+              <li><b>Homeseer integration</b> via <a href="https://konnected.readme.io/v2.0/reference" target="_blank">local device API v2</a>.</li>
+              <li><i>Coming soon:</i> Konnected Cloud</li>
+            </ul>
+          </label>
+          <label>
+            <div class="img-container">            
+              <img src="assets/Matter_logo.jpeg">
+            </div>
+            <p>
+              <input type="radio" name="firmware" value="esphome" disabled>
+              Matter firmware<span class="badge beta">BETA</span>
+            </p>
+            <ul class="sub">
+              <li><b>Apple Homekit</b>, <b>SmartThings</b>, <b>Alexa</b> local integration via Matter</li>
+              <li>NOT (yet) MATTER CERTIFIED. May not work with all Matter controllers.</li>
+              <li><a href="https://share.hsforms.com/1RrMQPKEhQyqTSjTv8oGS9Adff38" target="_blank">Join the Matter early-access program here</a></li>
+            </ul>
+          </label>
+        </div>
+
+        <!-- Garage Door Opener -->
+        <div class="firmware radios" id="gdo-white" style="display:none;">
+          <label>
+            <div class="img-container">
+              <img src="assets/logo-blue.svg">
+            </div>            
+            <p>
+              <input type="radio" name="firmware" value="konnected-legacy" data-manifest="manifests/konnected-garage-door-opener.json">
+              Original Konnected GDO firmware
+            </p>
+            <ul class="sub">
+              <li><b>SmartThings</b> and <b>Alexa</b> integration via Konnected cloud.</li>
+              <li>GDOv1 (sold in 2023) only</li>
+            </ul>
+          </label>
+          <label>
+            <div class="img-container">            
+              <img src="assets/made-for-esphome-black-on-white.svg">
+            </div>
+            <p>
+              <input type="radio" name="firmware" value="esphome" data-manifest="manifests/esphome-garage-door-wifi.json">
+              ESPHome firmware<span class="badge new">NEW</span>
+            </p>
+            <ul class="sub">
+              <li><b>SmartThings</b> and <b>Alexa</b> integration via Konnected Cloud (GDOv2 only)</li>
+              <li><b>Home Assistant</b> and <b>Hubitat</b> integration via native local API</li>
+              <li><b>Control4</b> and <b>Homeseer</b> integration via <a href="https://konnected.readme.io/v2.0/reference" target="_blank">local device API v2</a>.</li>
+            </ul>
+          </label>
+        </div>
+
+        <h2 id="build-header" style="display:none;">Select a build:</h2>
+        <div class="build radios" id="alarm-panel-pro-esphome" style="display:none">
+          <p class="sub">ESPHome can support only ethernet <em>or</em> Wi-Fi, not both at the same time. Choose the build below according to your desired connectivity. Check the hardware version on the Alarm Panel Pro board underneath the logo.</p>
+          <h3>Ethernet connectivity</h3>
+          <label>
+            <input type="radio" name="build" value="rtl8201" data-manifest="manifests/esphome-alarm-panel-rtl8201.json">
+            Ethernet: hardware version 1.8
+          </label>
+          <label>
+            <input type="radio" name="build" value="lan8720" data-manifest="manifests/esphome-alarm-panel-lan8720.json">
+            Ethernet: hardware version 1.5, 1.6 and 1.7
+          </label>
+
+          <h3>WiFi connectivity</h3>
+          <label>
+            <input type="radio" name="build" value="esphome-alarm-panel-wifi" data-manifest="manifests/esphome-alarm-panel-wifi.json">
+            WiFi: all versions
+          </label>
+        </div>
+      </div>
+      <div class="install-button" style="display:none">
+        <esp-web-install-button manifest="manifests/empty.json" id="inst">
+          <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
+        </esp-web-install-button>
+      </div>
+      <br/><br/><br/><br/>
+      <p>Need help? <a href="https://help.konnected.io">Konnected Help & Support portal</a></p>
+      <div style='font-size:11px;margin-top:5em;'>
+        &copy; Copyright 2024 <a href="https://konnected.io">Konnected Inc.</a></br>
+        <a href="https://esphome.github.io/esp-web-tools/" target='_blank' style='color:#aaa;'>powered by ESP Web Tools</a>
+      </div>  
+    </div>
+
+    <!--         <ol>
           <li><a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank">Download and install the USB drivers from Silicon Labs</a> to connect Konnected branded hardware.<br/>
             <span class="sub">To connect a NodeMCU/Konnected v1 use <a href="https://sparks.gogo.co.nz/ch340.html" target="_blank">this driver</a>. You only need to do this once.</span></li>
           <li>On 6-zone boards: open the door/window on Zone 6 or disconnect the wire from Zone 6 before continuing.
@@ -88,19 +275,54 @@
           <li>Follow the prompts to <u>Install Konnected</u> or view <u>Logs & Console</u>.</li>
           <li><a href="https://help.konnected.io/support/solutions/articles/32000023498-re-sync-device-settings" target="_blank">Re-sync the device settings</a> from the Konnected App or your local home automation platform.</li>
         </ol>
-      </div>
-      <p>
-        <esp-web-install-button manifest="manifest.json" id="inst">
-          <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
-        </esp-web-install-button>
-      </p>
-      <br/>
-      <p>Need help? <a href="https://help.konnected.io">Konnected Help & Support portal</a></p>
-      <div style='font-size:11px;margin-top:5em;'>
-        &copy; Copyright 2023 <a href="https://konnected.io">Konnected Inc.</a></br>
-        <a href="https://esphome.github.io/esp-web-tools/" target='_blank' style='color:#aaa;'>powered by ESP Web Tools</a>
-      </div>  
-    </div>
+ -->
+  <script>
+    var hardware = null;
+    var platform = null;
+
+    $(document).on('change', 'input[type="radio"]', e => {
+      $target = $(e.target);
+      $inst_button = $('div.install-button');
+      switch (e.target.name) {
+        case 'hardware':
+          hardware = $target.val();
+          platform = null;
+          $inst_button.hide();
+          $('#build-header').hide();
+          $('div.firmware.radios').hide();          
+          $('input[type="radio"][name="firmware"]').prop('checked', false);
+          $('input[type="radio"][name="build"]').prop('checked', false);
+          // show and scroll to Firmware section
+          $('div.firmware.radios#' + hardware).show();      
+          $('html,body').animate({scrollTop:$('#firmware-header').show().offset().top},'slow');
+          break;
+        
+        case 'firmware':
+          platform = $target.val();
+          $('div.build.radios').hide();
+          if($target.data('manifest')) {
+            $('#inst').attr('manifest', $target.data('manifest'));
+            $('#build-header').hide();
+            $inst_button.show()
+          } else {
+            $('input[type="radio"][name="build"]').prop('checked', false);
+            $inst_button.hide()
+            $('div.build.radios#' + hardware + '-' + platform).show();
+            $('html,body').animate({scrollTop:$('#build-header').show().offset().top},'slow');            
+          }
+          break;
+
+        case 'build':
+          if($target.data('manifest')) {
+            $('#inst').attr('manifest', $target.data('manifest'));
+            $inst_button.show();
+          }
+          break;
+      }
+    })
+
+  </script>
+
   </body>
 </html>
 
