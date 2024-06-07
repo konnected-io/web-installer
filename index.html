@@ -240,7 +240,7 @@
               <img src="assets/made-for-esphome-black-on-white.svg">
             </div>
             <p>
-              <input type="radio" name="firmware" value="esphome" data-manifest="manifests/esphome-gdov2-q.json">
+              <input type="radio" name="firmware" value="esphome">
               ESPHome firmware<span class="badge new">NEW</span>
             </p>
             <ul class="sub">
@@ -270,6 +270,16 @@
           <label>
             <input type="radio" name="build" value="esphome-alarm-panel-wifi" data-manifest="manifests/esphome-alarm-panel-wifi.json">
             WiFi: all versions
+          </label>
+        </div>
+        <div class="build radios" id="gdo-blaq-esphome" style="display:none">
+          <label>
+            <input type="radio" name="build" value="stable" data-manifest="manifests/esphome-gdov2-q.json">
+            stable (recommended)
+          </label>
+          <label>
+            <input type="radio" name="build" value="dev" data-manifest="manifests/esphome-gdov2-q-dev.json">
+            dev
           </label>
         </div>
       </div>
