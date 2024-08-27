@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-789423255"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-789423255');
+    </script>
+
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <title>Konnected Flash Tool - Install Konnected via Web Browser</title>
+    <link rel="stylesheet" href="https://use.typekit.net/zoq0xkd.css">
+    <style>
+      div,fieldset,input,select{padding:5px;font-size:1em;}
+      fieldset{background:#4f4f4f;}
+      p{margin:0.5em 0;}
+      p,li{font-size:1.1em;line-height: 1.2em;}
+      input{width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;background:#dddddd;color:#000000;}
+      input[type=checkbox],input[type=radio]{width:1em;margin-right:6px;vertical-align:-1px;}
+      input[type=range]{width:99%;}
+      select{width:100%;background:#dddddd;color:#000000;}
+      textarea{resize:vertical;width:98%;height:318px;padding:5px;overflow:auto;background:#1f1f1f;color:#65c115;}
+      body{font-family:Inter,sans-serif;background:#FFF;--esp-tools-button-color:#3F75FF;}
+      td{padding:0px;}
+      button{border:0;border-radius:0.3rem;background:#2777c0;color:#faffff;line-height:2.4rem;font-size:1.2rem;width:100%;-webkit-transition-duration:0.4s;transition-duration:0.4s;cursor:pointer;}
+      button:hover{background:#3F75FF;}
+      h1{font-weight:100;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;}
+      h2{font-weight:300;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;}
+      h3{font-weight:normal;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;}
+      li{margin-bottom: 1em;}
+      .main{margin: 2em auto;min-width:340px;max-width:1090px;width:1090px;}
+      .logo{text-align: center;}
+      .sub{font-weight:lighter;font-size:1em;}
+      .sub b{font-weight:normal;}
+      .bred{background:#d43535;}
+      .bred:hover{background:#931f1f;}
+      .bgrn{background:#47c266;}
+      .bgrn:hover{background:#5aaf6f;}
+      a{color:#3F75FF;text-decoration:none;}
+      .p{float:left;text-align:left;}
+      .q{float:right;text-align:right;}
+      .r{border-radius:0.3em;padding:2px;margin:6px 2px;}
+      .pick-variant{margin-bottom:16px;}
+      .flasher{text-align:left;}
+      .box{padding: 1em 2em; background-color: #f8f8f8; border: 1px solid #999;}
+      .badge{margin-left:0.5rem;font-size:0.8rem;letter-spacing:0.1rem;padding:0.3rem 1rem;background:rgba(71, 245, 163);vertical-align:top;}
+      .badge.beta{background: #fdf0d7;}
+      improv-wifi-launch-button{zoom:1.5;}      
+    </style>
+    <script type="module" src="https://www.improv-wifi.com/sdk-js/launch-button.js"></script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '235610976930801');
+      fbq('track', 'PageView');
+      </script>
+      <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=235610976930801&ev=PageView&noscript=1"
+      /></noscript>
+      <!-- End Facebook Pixel Code -->
+  </head>
+  <body>
+    <div class="main">
+      <img width="384px" src="assets/logo-blue.svg" itemprop="logo" alt="Konnected" class="logo"><br/>
+      <h1>Improv Wi-Fi Setup</h1>
+      <div>
+        <p>New Konnected devices can be connected to Wi-Fi via Bluetooth LE using this browser-based tool.</p>
+        <br/>
+        <improv-wifi-launch-button></improv-wifi-launch-button>
+      </div>
+      <div style="width:70%;">
+        <p class="sub" style="margin-top: 3em;">
+          Improv Bluetooth LE Wi-Fi setup is only available on <em>new</em> Konnected devices flashed with our <a href="/">factory default firmware made with ESPHome</a>. For security reasons,
+          Improv is disabled after your device firmware is customized for the first time.
+        </p>
+        <p class="sub">
+          Chrome or Edge browser is required to use this tool. Sorry, no iOS support yet.
+        </p>
+        <p class="sub">
+          <a href="https://www.improv-wifi.com/" target="_blank">Learn more about the Improv Wi-Fi open standard.</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
