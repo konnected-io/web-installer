@@ -32,7 +32,7 @@
       h2{font-weight:300;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;}
       h3{font-weight:normal;font-family:"basic-sans",HelveticaNeue,"Helvetica Neue",sans-serif;}
       li{margin-bottom: 1em;}
-      .main{margin: 2em auto;min-width:340px;max-width:1090px;width:1090px;}
+      .main{margin: 2em auto;min-width:340px;max-width:1090px;}
       .logo{text-align: center;}
       .sub{font-weight:lighter;font-size:1em;}
       .sub b{font-weight:normal;}
@@ -49,20 +49,22 @@
       .box{padding: 1em 2em; background-color: #f8f8f8; border: 1px solid #999;}
       .badge{margin-left:0.5rem;font-size:0.8rem;letter-spacing:0.1rem;padding:0.3rem 1rem;background:rgba(71, 245, 163);vertical-align:top;}
       .badge.beta{background: #fdf0d7;}
-      div.hardware.radios,
-      div.firmware.radios{display:flex;align-items:start;flex-direction:row;flex-wrap:wrap;}
+      .badge.deprecated{background:#EEE;}
+      div.hardware.radios{display:flex;align-items:start;flex-direction:row;flex-wrap:nowrap;}
+      div.firmware.radios label{display:flex;align-items:baseline;flex-direction:row;flex-wrap:nowrap;}
       div.build.radios{border-radius:10px;display:block;border:4px solid #f8f8f8;padding:1em;}
       div.radios label{cursor:pointer;display:block;position:relative;}
       div.hardware.radios label{width:24%;}
-      div.firmware.radios label{padding:4px;width:45%;margin:0.5em;border-radius:10px;border:4px solid #f8f8f8;}
+      div.firmware.radios label{padding:4px;width:95%;margin:0.5em;border-radius:10px;border:4px solid #f8f8f8;}
+      div.firmware.radios div.tile{display:block;position: relative;}
+      div.firmware.radios div.tile.img-container{width: 280px;flex-shrink: 0;}
       div.hardware.radios input{position:absolute;top:16px;left:16px;}
       div.radios img{width:240px;margin:0 auto;}
       div.hardware.radios img{border-radius:10px;display:block;border:4px solid #f8f8f8;}      
       input:checked ~ img, 
       div.hardware.radios img:has(+ input:checked){border-color:#3F75FF;}
       div.firmware.radios label:has(input:checked){border-color:#3F75FF;}
-      div.firmware.radios img{width:220px;padding:1em;margin: 0 auto;border:none;}
-      div.radios .img-container{min-height: 6rem;}
+      div.firmware.radios img{width:220px;padding:1em 0.5em;margin: 0 auto;border:none;}
       div.install-button{margin:2em auto;text-align: center;}
       esp-web-install-button{zoom:1.5;}
       esp-web-install-button[install-unsupported]{ border:1px dashed; padding: 1em; background-color: lightgoldenrodyellow;}
@@ -70,7 +72,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script
       type="module"
-      src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"
+      src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
     ></script>
 
     <!-- Facebook Pixel Code -->
@@ -126,128 +128,158 @@
         <!-- Alarm Panel ESP8266 -->
         <div class="firmware radios" id="alarm-panel-esp8266" style="display:none;">          
           <label>
-            <div class="img-container">
-              <img src="assets/logo-blue.svg">
-            </div>            
-            <p>
-              <input type="radio" name="firmware" value="konnected-legacy" data-manifest="manifest.json">
-              Original Konnected firmware
-            </p>
-            <ul class="sub">
-              <li><b>SmartThings</b> and <b>Alexa</b> integration via Konnected cloud.</li>
-              <li><b>Hubitat</b>, <b>HomeBridge</b>, <b>Control4</b> integration via <a href="https://konnected.readme.io/v1.0/reference" target="_blank">local device API v1</a>.</li>
-              <li>Home Assistant integration (<a href="https://www.home-assistant.io/integrations/konnected" target="_blank">deprecated</a>)</li>
-            </ul>
+            <div class="tile">
+              <p>
+                <input type="radio" name="firmware" value="esphome" data-manifest="manifests/esphome-alarm-panel-wifi.json">                
+              </p>
+              </div>
+            <div class="tile img-container">
+              <span class="badge new">RECOMMENDED</span><br/>
+              <img src="assets/made-for-esphome-black-on-white.svg">              
+            </div>
+            <div class="tile" style="flex-grow: 8;">
+              <p>Konnected's latest device firmware  -- recommended for Home Assistant and Hubitat users with 6-zone Alarm Panels.</p>
+              <ul class="sub">
+                <li><b>100% local.</b> The ESPHome firmware platform does not support Konnected Cloud on the 6-zone Alarm Panel hardware.</li>
+                <li><b>Multi-controller.</b> Integrates with multiple local smart home hubs simultaneously.</li>              
+              </ul>
+            </div>
           </label>
 
           <label>
-            <div class="img-container">            
-              <img src="assets/made-for-esphome-black-on-white.svg">
+            <div class="tile">
+              <p>
+                <input type="radio" name="firmware" value="konnected-legacy" data-manifest="manifest.json">
+              </p>
             </div>
-            <p>
-              <input type="radio" name="firmware" value="esphome" data-manifest="manifests/esphome-alarm-panel-wifi.json">
-              ESPHome firmware<span class="badge new">NEW</span>
-            </p>
-            <ul class="sub">
-              <li><b>Home Assistant</b> integration via native local API (recommended)</li>
-              <li><b>Homeseer integration</b> via <a href="https://konnected.readme.io/v2.0/reference" target="_blank">local device API v2</a>.</li>
-            </ul>
+            <div class="tile img-container" style="flex-grow: 4;">
+              <span class="badge deprecated">LEGACY</span><br/>
+              <img src="assets/nodemcu-style5-150px.png_150x150.png" style="width:120px;">
+            </div>            
+            <div class="tile" style="flex-grow: 8;">
+              <p>Konnected's original firmware (NodeMCU platform) supports a <em>single</em> cloud or local integration. Recommended for SmartThings or Alexa users.</p>
+              <ul class="sub">
+                <li><b>Single-controller</b>. Integrates with either Konnected Cloud or <em>one</em> local smart home hub.</li>
+              </ul>
+            </div>
           </label>
         </div>
 
         <!-- Alarm Panel Pro -->
         <div class="firmware radios" id="alarm-panel-pro" style="display:none;">          
           <label>
-            <div class="img-container">
-              <img src="assets/logo-blue.svg">
+            <div class="tile">
+              <p>
+                <input type="radio" name="firmware" value="esphome">                
+              </p>
+              </div>
+            <div class="tile img-container">
+              <span class="badge new">RECOMMENDED</span><br/>
+              <img src="assets/made-for-esphome-black-on-white.svg">              
+            </div>
+            <div class="tile text-block" style="flex-grow: 8;">
+              <p>Konnected's latest device firmware is now the default/stock on all new devices. Recommended for all new installs.</p>
+              <ul class="sub">                
+                <li><b>Multi-controller.</b> Integrates with multiple local smart home hubs and apps simultaneously.</li>              
+                <li><b>Cloud optional.</b> 100% local by default. Opt-in to Konnected Cloud connectivity for cloud-based integrations and premium features.</li>
+              </ul>
+            </div>
+          </label>
+          
+          <label>
+            <div class="tile">
+              <p>
+                <input type="radio" name="firmware" value="konnected-legacy" data-manifest="manifest.json">
+              </p>
+            </div>
+            <div class="tile img-container" style="flex-grow: 4;">
+              <span class="badge deprecated">LEGACY</span><br/>
+              <img src="assets/nodemcu-style5-150px.png_150x150.png" style="width:120px;">
             </div>            
-            <p>
-              <input type="radio" name="firmware" value="konnected-legacy" data-manifest="manifest.json">
-              Original Konnected Pro firmware
-            </p>
-            <ul class="sub">
-              <li><b>SmartThings</b> and <b>Alexa</b> integration via Konnected cloud.</li>
-              <li><b>Hubitat</b>, <b>HomeBridge</b>, <b>Control4</b> integration via <a href="https://konnected.readme.io/v1.0/reference" target="_blank">local device API v1</a>.</li>
-              <li>Home Assistant integration (<a href="https://www.home-assistant.io/integrations/konnected" target="_blank">deprecated</a>)</li>
-            </ul>
+            <div class="tile" style="flex-grow: 8;">
+              <p>Konnected's original firmware (NodeMCU platform) supports a <em>single</em> cloud or local integration.</p>
+              <ul class="sub">
+                <li><b>Single-host</b>. Integrates with either Konnected Cloud or <em>one</em> local smart home hub.</li>
+              </ul>
+            </div>
           </label>
 
           <label>
-            <div class="img-container">            
-              <img src="assets/made-for-esphome-black-on-white.svg">
+            <div class="tile">
+              <input type="radio" name="firmware" value="matter" data-manifest="manifests/matter-alarm-panel-pro.json">
             </div>
-            <p>
-              <input type="radio" name="firmware" value="esphome">
-              ESPHome firmware<span class="badge new">NEW</span>
-            </p>
-            <ul class="sub">
-              <li><b>Home Assistant</b> integration via native local API (recommended)</li>
-              <li><b>Homeseer integration</b> via <a href="https://konnected.readme.io/v2.0/reference" target="_blank">local device API v2</a>.</li>
-              <li><i>Coming soon:</i> Konnected Cloud</li>
-            </ul>
-          </label>
-          <label>
-            <div class="img-container">            
+            <div class="tile img-container" style="flex-grow: 4;">
+              <span class="badge beta">EXPERIMENTAL</span><br/>
               <img src="assets/Matter_logo.jpeg">
             </div>
-            <p>
-              <input type="radio" name="firmware" value="esphome" disabled>
-              Matter firmware<span class="badge beta">BETA</span>
-            </p>
-            <ul class="sub">
-              <li><b>Apple Homekit</b>, <b>SmartThings</b>, <b>Alexa</b> local integration via Matter</li>
-              <li>NOT (yet) MATTER CERTIFIED. May not work with all Matter controllers.</li>
-              <li><a href="https://share.hsforms.com/1RrMQPKEhQyqTSjTv8oGS9Adff38" target="_blank">Join the Matter early-access program here</a></li>
-            </ul>
+            <div class="tile" style="flex-grow: 8;">
+              <p>
+                Matter is the emerging smart home standard with promises of <em>local</em> integration with top consumer
+                smart home platforms. Konnected's EXPERIMENTAL support for Matter on the Alarm Panel Pro integrates contact sensors,
+                on/off switches, and temperature sensors to the Matter fabric.
+              </p>
+              <ul class="sub">
+                <li>NOT (yet) MATTER CERTIFIED. May not work with all Matter controllers.</li>
+                <li><a href="https://share.hsforms.com/1RrMQPKEhQyqTSjTv8oGS9Adff38" target="_blank">Request to join Konnected's Matter early-access program here</a></li>
+              </ul>  
+            </div>
           </label>
         </div>
 
         <!-- GDO White -->
         <div class="firmware radios" id="gdo-white" style="display:none;">
           <label>
-            <div class="img-container">
-              <img src="assets/logo-blue.svg">
-            </div>            
-            <p>
-              <input type="radio" name="firmware" value="konnected-legacy" data-manifest="manifests/konnected-garage-door-opener.json">
-              Original Konnected GDO firmware
-            </p>
-            <ul class="sub">
-              <li><b>SmartThings</b> and <b>Alexa</b> integration via Konnected cloud.</li>
-              <li>GDOv1 (sold in 2023) only</li>
-            </ul>
-          </label>
-          <label>
-            <div class="img-container">            
+            <div class="tile">
+              <input type="radio" name="firmware" value="esphome" data-manifest="manifests/esphome-garage-door-wifi.json">
+            </div>
+            <div class="tile img-container" style="flex-grow: 4;">
+              <span class="badge new">RECOMMENDED</span><br/>
               <img src="assets/made-for-esphome-black-on-white.svg">
             </div>
-            <p>
-              <input type="radio" name="firmware" value="esphome" data-manifest="manifests/esphome-garage-door-wifi.json">
-              ESPHome firmware<span class="badge new">NEW</span>
-            </p>
-            <ul class="sub">
-              <li><b>SmartThings</b> and <b>Alexa</b> integration via Konnected Cloud (GDOv2 only)</li>
-              <li><b>Home Assistant</b> and <b>Hubitat</b> integration via native local API</li>
-              <li><b>Control4</b> and <b>Homeseer</b> integration via <a href="https://konnected.readme.io/v2.0/reference" target="_blank">local device API v2</a>.</li>
-            </ul>
+            <div class="tile" style="flex-grow:8;">
+              <p>Konnected's latest device firmware made with ESPHome is now the default/stock on all new GDO White.</p>
+              <ul class="sub">
+                <li><b>Multi-controller.</b> Integrates with multiple local smart home hubs and apps simultaneously.</li>              
+                <li><b>Cloud optional.</b> 100% local by default. Opt-in to Konnected Cloud connectivity for cloud-based integrations and premium features.</li>
+              </ul>
+            </div>
+          </label>
+
+          <label>
+            <div class="tile">
+              <input type="radio" name="firmware" value="konnected-legacy" data-manifest="manifests/konnected-garage-door-opener.json">
+            </div>
+            <div class="tile img-container" style="flex-grow: 4;">
+              <span class="badge deprecated">V1 ONLY</span><br/>
+              <img src="assets/nodemcu-style5-150px.png_150x150.png" style="width:120px;">
+            </div>            
+            <div class="tile" style="flex-grow:8;">              
+              <p>Original Konnected GDOv1 (NodeMCU firmware)</p>
+              <ul class="sub">
+                <li><b>SmartThings</b> and <b>Alexa</b> integration via Konnected cloud.</li>
+                <li><b>For GDOv1 (sold in 2023) only</b></li>
+              </ul>  
+            </div>
           </label>
         </div>
 
         <!-- GDO blaQ -->
         <div class="firmware radios" id="gdo-blaq" style="display:none;">
           <label>
-            <div class="img-container">            
+            <div class="tile">
+              <input type="radio" name="firmware" value="esphome" data-manifest="manifests/esphome-gdov2-q.json">
+            </div>
+            <div class="tile img-container" style="flex-grow:4;">
+              <span class="badge new">RECOMMENDED</span>
               <img src="assets/made-for-esphome-black-on-white.svg">
             </div>
-            <p>
-              <input type="radio" name="firmware" value="esphome">
-              ESPHome firmware<span class="badge new">NEW</span>
-            </p>
-            <ul class="sub">
-              <li><b>SmartThings</b> and <b>Alexa</b> integration via Konnected Cloud</li>
-              <li><b>Home Assistant</b> and <b>Hubitat</b> integration via native local API</li>
-              <li><b>Control4</b> and <b>Homeseer</b> integration via <a href="https://konnected.readme.io/v2.0/reference" target="_blank">local device API v2</a>.</li>
-            </ul>
+            <div class="tile" style="flex-grow:8;">
+              <p><p>Konnected's latest device firmware made with ESPHome is now the default/stock on all new devices. Currently the only option for the GDO blaQ.</p></p>
+              <ul class="sub">
+                <li><b>Multi-controller.</b> Integrates with multiple local smart home hubs and apps simultaneously.</li>              
+                <li><b>Cloud optional.</b> 100% local by default. Opt-in to Konnected Cloud connectivity for cloud-based integrations and premium features.</li>
+              </ul>
+            </div>
           </label>
         </div>
 
@@ -259,7 +291,7 @@
           <h3>Ethernet connectivity</h3>
           <label>
             <input type="radio" name="build" value="rtl8201" data-manifest="manifests/esphome-alarm-panel-rtl8201.json">
-            Ethernet: hardware version 1.8
+            Ethernet: hardware version 1.8 and 1.9
           </label>
           <label>
             <input type="radio" name="build" value="lan8720" data-manifest="manifests/esphome-alarm-panel-lan8720.json">
@@ -270,16 +302,6 @@
           <label>
             <input type="radio" name="build" value="esphome-alarm-panel-wifi" data-manifest="manifests/esphome-alarm-panel-wifi.json">
             WiFi: all versions
-          </label>
-        </div>
-        <div class="build radios" id="gdo-blaq-esphome" style="display:none">
-          <label>
-            <input type="radio" name="build" value="stable" data-manifest="manifests/esphome-gdov2-q.json">
-            stable (recommended)
-          </label>
-          <label>
-            <input type="radio" name="build" value="dev" data-manifest="manifests/esphome-gdov2-q-dev.json">
-            dev
           </label>
         </div>
       </div>
