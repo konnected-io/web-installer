@@ -1,0 +1,12 @@
+{
+  "name": "Konnected GDOv2-Q",
+  "version": "1.3.3-KB-20241126",
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        { "path": "https://konnected-io.s3.us-east-2.amazonaws.com/builds/gdo-blaq-offline-dry-contact-toggle-relay.bin", "offset": 0}
+      ]
+    }
+  ]
+}

@@ -39,38 +39,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script
       type="module"
-      src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"
+      src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
     ></script>
   </head>
   <body>
     <div class="main" style='display:inline-block;min-width:340px;max-width:860px;margin-top:2em;'>
       <img width="512px" src="assets/logo-blue.png" itemprop="logo" alt="Konnected"><br/>    
-      <h1>CT firmware update</h1>
+      <h1>KB firmware update</h1>
       <div style="text-align: left;">
-        <p>NOT FOR PRODUCTION USE. This firmware update page is for distributing firmware updates to Konnected's compliance lab partners. If you've stumbled
+        <p>For Kris Barney only. If you are not Kris and you've stumbled
           across this page by accident, kindly move along, thanks!
         </p>
         </div>
       <br/>
-      <div style="display:grid;">
-        <div style="grid-column: 1 / span 2;">
-          <select id="build-variant">
-            <option selected value="CT-gdov2-s">GDOv2-S</option>
-          </select>
-        </div>
-        <div style="grid-column-start: 3;">
-          <esp-web-install-button manifest="manifests/CT-gdov2-s.json" id="inst">
-            <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
-          </esp-web-install-button>
-        </div>
-        <script>
-          $("select#build-variant").on('change', e => {
-            console.log(this)
-            var $selectedOption = $("option:selected", this.currentTarget);
-            $("#inst").attr('manifest', 'manifests/' + $selectedOption.val() + '.json');
-          })
-        </script>
-      </div>
+      <esp-web-install-button manifest="manifests/KB-gdov2-q.json" id="inst">
+        <span slot="unsupported"><strong>Unsupported Browser:</strong> Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://microsoft.com/edge" target="_blank">Microsoft Edge</a> browser to use this tool.</span>
+      </esp-web-install-button>
       <br/>
       <div style='font-size:11px;margin-top:5em;'>
         &copy; Copyright 2023 <a href="https://konnected.io">Konnected Inc.</a></br>
