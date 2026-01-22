@@ -68,6 +68,22 @@
       div.install-button{margin:2em auto;text-align: center;}
       esp-web-install-button{zoom:1.5;}
       esp-web-install-button[install-unsupported]{ border:1px dashed; padding: 1em; background-color: lightgoldenrodyellow;}
+      .faq{margin-top:3em;text-align:left;}
+      .faq-header{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:0.5em 0;border-bottom:1px solid #ddd;}
+      .faq-header:hover{color:#3F75FF;}
+      .faq-header h2{margin:0;}
+      .faq-header::after{content:'+';font-size:1.5em;font-weight:300;}
+      .faq.open .faq-header::after{content:'−';}
+      .faq-content{max-height:0;overflow:hidden;transition:max-height 0.3s ease-out;}
+      .faq.open .faq-content{max-height:2000px;}
+      .faq-item{border-bottom:1px solid #ddd;}
+      .faq-question{display:flex;justify-content:space-between;align-items:center;padding:1em 0;cursor:pointer;font-weight:500;}
+      .faq-question:hover{color:#3F75FF;}
+      .faq-question::after{content:'+';font-size:1.5em;font-weight:300;transition:transform 0.3s;}
+      .faq-item.open .faq-question::after{content:'−';}
+      .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s ease-out;}
+      .faq-item.open .faq-answer{max-height:500px;}
+      .faq-answer p{padding:0 0 1em 0;color:#555;}
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script
@@ -373,7 +389,57 @@
         </esp-web-install-button>
       </div>
       <br/><br/><br/><br/>
-      <p>Need more help? <a href="https://help.konnected.io">Konnected Help & Support portal</a></p>
+
+      <div class="faq">
+        <div class="faq-header">
+          <h2>Troubleshooting / FAQ</h2>
+        </div>
+        <div class="faq-content">
+          <div class="faq-item">
+            <div class="faq-question">Which browsers are supported?</div>
+            <div class="faq-answer">
+              <p>Use <strong>Google Chrome</strong> or <strong>Microsoft Edge</strong> browser. Safari and Firefox are not supported for USB flashing.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">My device is not detected when I click Connect</div>
+            <div class="faq-answer">
+              <p>Make sure you're using a data-quality micro-USB cable. Some USB cables are charging-only and do not support data transfer. Try a different cable if your device isn't appearing in the port selection list.
+                You can buy a <a href="https://konnected.io/products/micro-usb-cable" target="_blank">data-quality micro-USB cable here</a>.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Do I need to install USB drivers?</div>
+            <div class="faq-answer">
+              <p><strong>GDO blaQ:</strong> No drivers needed.<br/>
+              <strong>Alarm Panel Pro, Alarm Panel v2, GDO White:</strong> Windows users may need the <a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank">CP210x driver from Silicon Labs</a>.<br/>
+              <strong>6-zone Alarm Panel (NodeMCU):</strong> Install the <a href="https://sparks.gogo.co.nz/ch340.html" target="_blank">CH340 driver</a> on Windows or Mac.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Flashing fails or stops midway</div>
+            <div class="faq-answer">
+              <p>Some computers may not provide enough power over USB. Try connecting an external 12V power supply or PoE (for Alarm Panel Pro) while the USB cable is also connected to provide additional power during flashing.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">I'm getting errors on my 6-zone Alarm Panel</div>
+            <div class="faq-answer">
+              <p>On 6-zone Alarm Panels, Zone 6 must remain open or empty during flashing. Remove any wires connected to Zone 6 before attempting to flash. You can reconnect them after flashing is complete.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Which serial port should I select?</div>
+            <div class="faq-answer">
+              <p><strong>Windows:</strong> Look for a COM port (e.g., COM3, COM4).<br/>
+              <strong>Mac:</strong> Look for a port containing "cu.usbserial" or "cu.usbmodem" in the name.</p>
+            </div>
+          </div>
+          <p>Need more help? <a href="https://help.konnected.io">Konnected Help & Support portal</a></p>
+        </div>
+      </div>
+
       <div style='font-size:11px;margin-top:5em;'>
         &copy; Copyright 2026 <a href="https://konnected.io">Konnected Inc.</a></br>
         <a href="https://esphome.github.io/esp-web-tools/" target='_blank' style='color:#aaa;'>powered by ESP Web Tools</a>
@@ -438,6 +504,14 @@
           break;
       }
     })
+
+    // FAQ accordion
+    $('.faq-header').on('click', function() {
+      $(this).parent('.faq').toggleClass('open');
+    });
+    $('.faq-question').on('click', function() {
+      $(this).parent('.faq-item').toggleClass('open');
+    });
 
   </script>
 
